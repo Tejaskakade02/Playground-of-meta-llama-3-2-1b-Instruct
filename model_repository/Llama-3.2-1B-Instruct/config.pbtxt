@@ -1,0 +1,31 @@
+name: "Llama-3.2-1B-Instruct"
+backend: "vllm"
+max_batch_size: 0
+
+input [
+  {
+    name: "text_input"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+output [
+  {
+    name: "text_output"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+parameters: {
+  key: "model"
+  value: { string_value: "/workspace/Llama-3.2-1B-Instruct" }
+}
+
+instance_group [
+  {
+    kind: KIND_GPU
+    count: 1
+  }
+]
